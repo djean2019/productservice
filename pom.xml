@@ -76,6 +76,7 @@
 				</configuration>
 			</plugin>
 		</plugins>
+		<finalName>productservice</finalName>
 	</build>
 
 </project>
