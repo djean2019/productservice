@@ -16,6 +16,19 @@
 	<properties>
 		<java.version>1.8</java.version>
 	</properties>
+	
+	<profiles>
+		<profile>
+	      <id>acceptance</id>
+	      <activation>
+	        <activeByDefault>false</activeByDefault>
+	      </activation>
+	      <properties>
+	      <test.source.dir>src/test/java/com/gap/productservice</test.source.dir>
+	      </properties>
+      	</profile>
+    </profiles>
+    
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -58,9 +71,15 @@
 		    <groupId>javax.annotation</groupId>
 		    <artifactId>javax.annotation-api</artifactId>
 		</dependency>
-  
+  		
+  		<dependency>
+		    <groupId>junit</groupId>
+		    <artifactId>junit</artifactId>
+		    <scope>test</scope>
+		</dependency>
+		
 	</dependencies>
-
+	
 	<build>
 		<plugins>
 			<plugin>
