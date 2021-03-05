@@ -17,10 +17,11 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import com.gap.productservice.model.Product;
 import com.gap.productservice.repository.ProductRepository;
+import com.gap.productservice.service.ProductDTO;
 import com.gap.productservice.service.ProductService;
 
 @RunWith(MockitoJUnitRunner.class)
-class ProductServiceTest {
+public class ProductServiceTest {
 
 	@Mock
 	private ProductRepository productRepository;
@@ -35,10 +36,11 @@ class ProductServiceTest {
 	@Test
 	public void getProductTest() throws Exception {
 
-		given(productService.getProductDetails(anyString())).willReturn(new Product("iPhone",200.00));
-		
+//		given(productService.getProductDetails(anyString())).willReturn(new Product("iPhone",200.00));
+
+		given(productService.getProductDetails(anyString())).willReturn(new Product(1,"iPhone",200.00,"ssavvs"));	
 		Product product = productService.getProductDetails("iPhone");
-		
+
 		assertThat(product.getName()).isEqualTo("iPhone");
 		assertThat(product.getPrice()).isEqualTo(200.00);
 	}
