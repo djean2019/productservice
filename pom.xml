@@ -8,13 +8,23 @@
 		<version>2.4.2</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
+<!-- 	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>2.0.3.RELEASE</version>
+		<relativePath /> lookup parent from repository
+	</parent> -->
 	<groupId>com.project.darphe</groupId>
 	<artifactId>productservice</artifactId>
 	<version>1.0</version>
 	<name>productservice</name>
 	<description>Spring Boot</description>
 	<properties>
+		<!-- <java.version>1.8</java.version> -->
+		<!-- <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 		<java.version>1.8</java.version>
+		<spring-cloud.version>Finchley.RELEASE</spring-cloud.version> -->
 	</properties>
 	
 	<profiles>
@@ -71,12 +81,25 @@
 		    <groupId>javax.annotation</groupId>
 		    <artifactId>javax.annotation-api</artifactId>
 		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/org.ehcache/ehcache -->
+	    <dependency>
+		      <groupId>org.springframework.boot</groupId>
+		      <artifactId>spring-boot-starter-cache</artifactId>
+		</dependency>
+		
+		<!-- https://mvnrepository.com/artifact/net.sf.ehcache/ehcache-core -->
+		<!-- <dependency>
+		    <groupId>net.sf.ehcache</groupId>
+		    <artifactId>ehcache-core</artifactId>
+		    <version>2.5.1</version>
+		</dependency> -->
   		<!-- solve my build problem -->
-  		<dependency>
+  		<!-- <dependency>
 		    <groupId>junit</groupId>
 		    <artifactId>junit</artifactId>
 		    <scope>test</scope>
-		</dependency>
+		</dependency> -->
 		
 	</dependencies>
 	

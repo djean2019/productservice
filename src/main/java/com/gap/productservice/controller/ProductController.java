@@ -1,5 +1,7 @@
 package com.gap.productservice.controller;
 
+import java.util.List;
+
 //import java.util.ArrayList;
 //import java.util.List;
 
@@ -39,6 +41,11 @@ public class ProductController {
 		return new ResponseEntity<ProductDTO>(product, HttpStatus.OK);
 	}
 
+	@GetMapping("/products/all")
+	public ResponseEntity<?> getProducts() {
+		return new ResponseEntity<List<Product>>(productService.getAll(), HttpStatus.OK);
+	}
+
 
 	@GetMapping("/products/details/{name}")
 	public ResponseEntity<?> getProductDetails(@PathVariable String name) {
@@ -62,7 +69,7 @@ public class ProductController {
 		return new ResponseEntity<Product>(product, HttpStatus.OK);
 	}
 	
-	@ExceptionHandler(ProductNotFoundException.class)
+//	@ExceptionHandler(ProductNotFoundException.class)
 	@DeleteMapping("/products/{productNumber}")
 	public ResponseEntity<?> delete(@PathVariable("productNumber") int n) {
 		productService.delete(n);

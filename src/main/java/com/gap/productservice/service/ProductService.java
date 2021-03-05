@@ -1,7 +1,9 @@
 package com.gap.productservice.service;
 
+import java.util.List;
 import java.util.Optional;
 
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -24,19 +26,24 @@ public class ProductService {
 	public Product getProductDetails(String name) {
 		Product product = productRepository.findByName(name);
 		if(product == null) {
-			throw new ProductNotFoundException("Not Found...");
+			throw new ProductNotFoundException(name);
 		}
 		return product;
 	}
+	@Cacheable(value="product-ca")
+	public List<Product> getAll(){
+		return productRepository.findAll();
+	}
 	
 	
+	@Cacheable(value="product-cache", key="'ProductCache'+#name")
 	public ProductDTO getProduct(String name) {
 		Optional<Product> result = Optional.of(productRepository.findByName(name));
 		if (result.isPresent())
 			  return ProductAdapter.getProductDTO(result.get());
 		else
 //			return null;
-			throw new ProductNotFoundException("Not Found...");
+			throw new ProductNotFoundException();
 
 	}
 	
