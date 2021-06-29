@@ -22,7 +22,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Entity
 public class Product {
-
+// Just a comment in product model
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int productNumber;

@@ -16,7 +16,7 @@ import com.gap.productservice.model.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = WebEnvironment.RANDOM_PORT)
-public class IntegrationTest {
+public class ProductserviceIntegrationTest {
 
 	@Autowired
 	private TestRestTemplate restTemplate;
@@ -26,7 +26,7 @@ public class IntegrationTest {
 		// arrange
 		
 		// act
-		ResponseEntity<Product> response = restTemplate.getForEntity("/products/iphone", Product.class);
+		ResponseEntity<Product> response = restTemplate.getForEntity("/products/iPhone", Product.class);
 		
 		//assert
 		assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);

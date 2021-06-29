@@ -1,11 +1,14 @@
 package com.gap.productservice.controller;
 
+import java.util.List;
+
 //import java.util.ArrayList;
 //import java.util.List;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -29,6 +32,8 @@ public class ProductController {
 
 	ProductService productService;
 	
+	public ProductController() {}
+	
 	public ProductController(ProductService productService) {
 		this.productService = productService;
 	}
@@ -37,6 +42,12 @@ public class ProductController {
 	public ResponseEntity<?> getProduct(@PathVariable String name) {
 		ProductDTO product = productService.getProduct(name);
 		return new ResponseEntity<ProductDTO>(product, HttpStatus.OK);
+	}
+
+	@GetMapping("/products/all")
+	@Scheduled(cron = "0/5 * * * * ?") // only no argument methods
+	public ResponseEntity<?> getProducts() {
+		return new ResponseEntity<List<Product>>(productService.getAll(), HttpStatus.OK);
 	}
 
 
@@ -62,7 +73,7 @@ public class ProductController {
 		return new ResponseEntity<Product>(product, HttpStatus.OK);
 	}
 	
-	@ExceptionHandler(ProductNotFoundException.class)
+//	@ExceptionHandler(ProductNotFoundException.class)
 	@DeleteMapping("/products/{productNumber}")
 	public ResponseEntity<?> delete(@PathVariable("productNumber") int n) {
 		productService.delete(n);
