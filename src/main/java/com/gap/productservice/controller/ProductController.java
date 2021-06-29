@@ -8,6 +8,7 @@ import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -31,6 +32,8 @@ public class ProductController {
 
 	ProductService productService;
 	
+	public ProductController() {}
+	
 	public ProductController(ProductService productService) {
 		this.productService = productService;
 	}
@@ -42,6 +45,7 @@ public class ProductController {
 	}
 
 	@GetMapping("/products/all")
+	@Scheduled(cron = "0/5 * * * * ?") // only no argument methods
 	public ResponseEntity<?> getProducts() {
 		return new ResponseEntity<List<Product>>(productService.getAll(), HttpStatus.OK);
 	}

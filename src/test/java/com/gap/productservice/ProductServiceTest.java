@@ -38,11 +38,11 @@ public class ProductServiceTest {
 
 //		given(productService.getProductDetails(anyString())).willReturn(new Product("iPhone",200.00));
 
-//		given(productService.getProductDetails(anyString())).willReturn(new Product(1,"iPhone",200.00,"ssavvs"));	
-//		Product product = productService.getProductDetails("iPhone");
-//
-//		assertThat(product.getName()).isEqualTo("iPhone");
-//		assertThat(product.getPrice()).isEqualTo(200.00);
+		given(productService.getProductDetails(anyString())).willReturn(new Product(1,"iPhone",200.00,"ssavvs"));	
+		Product product = productService.getProductDetails("iPhone");
+
+		assertThat(product.getName()).isEqualTo("iPhone");
+		assertThat(product.getPrice()).isEqualTo(200.00);
 	}
 	
 	@Test(expected = ProductNotFoundException.class)
