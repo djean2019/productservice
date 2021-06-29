@@ -33,9 +33,11 @@ public class ProductControllerTest {
 	@Test
 	public void getProductTest() throws Exception {
 
-		given(productService.getProductDetails(anyString())).willReturn(new Product("iPhone",200.00));
+//		given(productService.getProductDetails(anyString())).willReturn(new Product("iPhone",200.00));
 		
-		mockMvc.perform(MockMvcRequestBuilders.get("/products/iPhone"))
+
+		given(productService.getProductDetails(anyString())).willReturn(new Product(1,"iPhone",200.00,"n/a"));
+		mockMvc.perform(MockMvcRequestBuilders.get("/products/details/iPhone"))
 		.andExpect(status().isOk())
 		.andExpect(jsonPath("name").value("iPhone"))
 		.andExpect(jsonPath("price").value(200.00));
@@ -45,7 +47,7 @@ public class ProductControllerTest {
 	public void productNotFound() throws Exception{
 		given(productService.getProductDetails(anyString())).willThrow(new ProductNotFoundException());
 		
-		mockMvc.perform(MockMvcRequestBuilders.get("/products/iPhone"))
+		mockMvc.perform(MockMvcRequestBuilders.get("/products/details/iPhone"))
 		.andExpect(status().isNotFound());
 	}
 
